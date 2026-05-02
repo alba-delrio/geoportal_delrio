@@ -25,41 +25,41 @@ EN REALIDAD EN POST LOS DATOS VAN POR DETRÁS (DESPUÉS DE ///) PERO PARA SABER 
 urlpatterns = [
     # --- BARRIOS ---
     path('barrios/', 
-         views.BarriosView.as_view(actions={'get': 'selectall', 'post': 'insert'}), 
+         views.BarriosView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
          name='B_GET_selectall()_POST_insert()'), 
     
     path('barrios/<int:id>/', 
-         views.BarriosView.as_view(actions={'get': 'selectone', 'post': 'update'}), 
+         views.BarriosView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
          name='B_GET_selectone(id)_POST_update(id)'),
     
     path('barrios/<int:id>/delete/', 
-         views.BarriosView.as_view(actions={'post': 'delete'}), 
+         views.BarriosView.as_view(actions={'POST': 'delete'}), 
          name='B_POST_delete(id)'),
 
     # --- CLIENTES ---
     path('clientes/', 
-         views.ClientesView.as_view(actions={'get': 'selectall', 'post': 'insert'}), 
+         views.ClientesView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
          name='C_GET_selectall()_POST_insert()'),
     
     path('clientes/<int:id>/', 
-         views.ClientesView.as_view(actions={'get': 'selectone', 'post': 'update'}), 
+         views.ClientesView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
          name='C_GET_selectone(id)_POST_update(id)'),
     
     path('clientes/<int:id>/delete/', 
-         views.ClientesView.as_view(actions={'post': 'delete'}), 
+         views.ClientesView.as_view(actions={'POST': 'delete'}), 
          name='C_POST_delete(id)'),
 
     # --- RUTAS ---
     path('rutas/', 
-         views.RutasView.as_view(actions={'get': 'selectall', 'post': 'insert'}), 
+         views.RutasView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
          name='R_GET_selectall()_POST_insert()'),
     
     path('rutas/<int:id>/', 
-         views.RutasView.as_view(actions={'get': 'selectone', 'post': 'update'}), 
+         views.RutasView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
          name='R_GET_selectone(id)_POST_update(id)'),
     
     path('rutas/<int:id>/delete/', 
-         views.RutasView.as_view(actions={'post': 'delete'}), 
+         views.RutasView.as_view(actions={'POST': 'delete'}), 
          name='R_POST_delete(id)'),
 ]
 
