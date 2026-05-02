@@ -15,6 +15,7 @@ from geoportal_delrio.operations.selectDjango import select_barrio, selectall_ba
 from geoportal_delrio.operations.updateDjango import update_barrio, update_cliente, update_ruta
 
 class HelloGeoportal_DelRio(View):
+    actions = {}
     def get(self, request):
         return JsonResponse({"ok":True,"message": "Geoportal_DelRio. Hello world", "data":[request.GET.dict()]})
     def post(self, request):
@@ -22,6 +23,7 @@ class HelloGeoportal_DelRio(View):
 
 ############ BARRIOS
 class BarriosView(BaseDjangoView, ):
+    actions = {}
     #GET OPERATIONS
     def selectone(self, request, id):
         r=select_barrio({'id':id})
@@ -49,6 +51,7 @@ class BarriosView(BaseDjangoView, ):
 
 ############ CLIENTES
 class ClientesView(BaseDjangoView, ):
+    actions = {}
     #GET OPERATIONS
     def selectone(self, request, id):
         r=select_cliente({'id':id})
@@ -76,6 +79,7 @@ class ClientesView(BaseDjangoView, ):
 
 ############ RUTAS
 class RutasView(BaseDjangoView, ):
+    actions = {}
     #GET OPERATIONS
     def selectone(self, request, id):
         r=select_ruta({'id':id})
