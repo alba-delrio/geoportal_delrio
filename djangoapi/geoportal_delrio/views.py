@@ -23,11 +23,11 @@ class HelloGeoportal_DelRio(View):
 ############ BARRIOS
 class BarriosView(BaseDjangoView, ):
     #GET OPERATIONS
-    def selectone(self, id):
+    def selectone(self, request, id):
         r=select_barrio({'id':id})
         return JsonResponse(r)
 
-    def selectall(self):
+    def selectall(self, request):
         r=selectall_barrios()
         return JsonResponse(r)
 
@@ -50,11 +50,11 @@ class BarriosView(BaseDjangoView, ):
 ############ CLIENTES
 class ClientesView(BaseDjangoView, ):
     #GET OPERATIONS
-    def selectone(self, id):
+    def selectone(self, request, id):
         r=select_cliente({'id':id})
         return JsonResponse(r)
 
-    def selectall(self):
+    def selectall(self, request):
         r=selectall_clientes()
         return JsonResponse(r)
 
@@ -77,11 +77,11 @@ class ClientesView(BaseDjangoView, ):
 ############ RUTAS
 class RutasView(BaseDjangoView, ):
     #GET OPERATIONS
-    def selectone(self, id):
+    def selectone(self, request, id):
         r=select_ruta({'id':id})
         return JsonResponse(r)
 
-    def selectall(self):
+    def selectall(self, request):
         r=selectall_rutas()
         return JsonResponse(r)
 
