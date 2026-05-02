@@ -22,54 +22,73 @@ delete-->POST/barrios/1/delete/
 EN EL NAVEGADOR NO SE ESCRIBE GET O POST
 EN REALIDAD EN POST LOS DATOS VAN POR DETRÁS (DESPUÉS DE ///) PERO PARA SABER LO QUE LLEVA
 '''
-
 urlpatterns = [
-    # Ruta de prueba
-    path('hello/', views.HelloGeoportal_DelRio.as_view(), name='hello_geoportal'),
+    # --- BARRIOS ---
+    path('barrios/', views.BarriosView.as_view(), name='B_GET_selectall()_POST_insert()'), 
+    path('barrios/<int:id>/', views.BarriosView.as_view(), name='B_GET_selectone(id)_POST_update(id)'),
+    path('barrios/<int:id>/delete/', views.BarriosView.as_view(), name='B_POST_delete(id)'),
 
-    # --- RUTAS PARA BARRIOS ---
-    # GET: listar todos | POST: insertar nuevo
-    path('barrios/', views.BarriosView.as_view({
-        'get': 'selectall', 
-        'post': 'insert'
-    })),
-    # GET: ver uno | POST: actualizar datos
-    path('barrios/<int:id>/', views.BarriosView.as_view({
-        'get': 'selectone', 
-        'post': 'update'
-    })),
-    # POST: borrar
-    path('barrios/<int:id>/delete/', views.BarriosView.as_view({
-        'post': 'delete'
-    })),
+    # --- CLIENTES ---
+    path('clientes/', views.ClientesView.as_view(), name='C_GET_selectall()_POST_insert()'),
+    path('clientes/<int:id>/', views.ClientesView.as_view(), name='C_GET_selectone(id)_POST_update(id)'),
+    path('clientes/<int:id>/delete/', views.ClientesView.as_view(), name='C_POST_delete(id)'),
 
-    # --- RUTAS PARA CLIENTES ---
-    path('clientes/', views.ClientesView.as_view({
-        'get': 'selectall', 
-        'post': 'insert'
-    })),
-    
-    path('clientes/<int:id>/', views.ClientesView.as_view({
-        'get': 'selectone', 
-        'post': 'update'
-    })),
-    
-    path('clientes/<int:id>/delete/', views.ClientesView.as_view({
-        'post': 'delete'
-    })),
-
-    # --- RUTAS PARA RUTAS ---
-    path('rutas/', views.RutasView.as_view({
-        'get': 'selectall', 
-        'post': 'insert'
-    })),
-    
-    path('rutas/<int:id>/', views.RutasView.as_view({
-        'get': 'selectone', 
-        'post': 'update'
-    })),
-    
-    path('rutas/<int:id>/delete/', views.RutasView.as_view({
-        'post': 'delete'
-    })),
+    # --- RUTAS ---
+    path('rutas/', views.RutasView.as_view(), name='R_GET_selectall()_POST_insert()'),
+    path('rutas/<int:id>/', views.RutasView.as_view(), name='R_GET_selectone(id)_POST_update(id)'),
+    path('rutas/<int:id>/delete/', views.RutasView.as_view(), name='R_POST_delete(id)'),
 ]
+
+
+
+
+# urlpatterns = [
+#     # Ruta de prueba
+#     path('hello/', views.HelloGeoportal_DelRio.as_view(), name='hello_geoportal'),
+
+#     # --- RUTAS PARA BARRIOS ---
+#     # GET: listar todos | POST: insertar nuevo
+#     path('barrios/', views.BarriosView.as_view({
+#         'get': 'selectall', 
+#         'post': 'insert'
+#     })),
+#     # GET: ver uno | POST: actualizar datos
+#     path('barrios/<int:id>/', views.BarriosView.as_view({
+#         'get': 'selectone', 
+#         'post': 'update'
+#     })),
+#     # POST: borrar
+#     path('barrios/<int:id>/delete/', views.BarriosView.as_view({
+#         'post': 'delete'
+#     })),
+
+#     # --- RUTAS PARA CLIENTES ---
+#     path('clientes/', views.ClientesView.as_view({
+#         'get': 'selectall', 
+#         'post': 'insert'
+#     })),
+    
+#     path('clientes/<int:id>/', views.ClientesView.as_view({
+#         'get': 'selectone', 
+#         'post': 'update'
+#     })),
+    
+#     path('clientes/<int:id>/delete/', views.ClientesView.as_view({
+#         'post': 'delete'
+#     })),
+
+#     # --- RUTAS PARA RUTAS ---
+#     path('rutas/', views.RutasView.as_view({
+#         'get': 'selectall', 
+#         'post': 'insert'
+#     })),
+    
+#     path('rutas/<int:id>/', views.RutasView.as_view({
+#         'get': 'selectone', 
+#         'post': 'update'
+#     })),
+    
+#     path('rutas/<int:id>/delete/', views.RutasView.as_view({
+#         'post': 'delete'
+#     })),
+# ]

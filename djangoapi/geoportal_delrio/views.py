@@ -66,12 +66,12 @@ class ClientesView(BaseDjangoView, ):
     def update(self, request, id):
         d = request.POST.dict()
         d['id'] = id
-        r=update_cliente(d())
+        r=update_cliente(d)
         return JsonResponse(r)
     def delete(self, request, id):
         d = request.POST.dict()
         d['id'] = id
-        r=delete_cliente(d())
+        r=delete_cliente(d)
         return JsonResponse(r)
 
 ############ RUTAS
