@@ -21,7 +21,7 @@ class HelloGeoportal_DelRio(View):
         return JsonResponse({"ok":True,"message": "Geoportal_DelRio. Hello world", "data":[request.POST.dict()]})
 
 ############ BARRIOS
-class BarriosView(BaseDjangoView):
+class BarriosView(BaseDjangoView, ):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_barrio({'id':id})
@@ -41,13 +41,14 @@ class BarriosView(BaseDjangoView):
         d['id'] = id
         r=update_barrio(d)
         return JsonResponse(r)
-    def delete(self, id):
-        d={'id':id}
+    def delete(self, request, id):
+        d = request.POST.dict()
+        d['id'] = id
         r=delete_barrio(d)
         return JsonResponse(r)
 
 ############ CLIENTES
-class ClientesView(BaseDjangoView):
+class ClientesView(BaseDjangoView, ):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_cliente({'id':id})
@@ -67,13 +68,14 @@ class ClientesView(BaseDjangoView):
         d['id'] = id
         r=update_cliente(d())
         return JsonResponse(r)
-    def delete(self, id):
-        d={'id':id}
-        r=delete_cliente(d)
+    def delete(self, request, id):
+        d = request.POST.dict()
+        d['id'] = id
+        r=delete_cliente(d())
         return JsonResponse(r)
 
 ############ RUTAS
-class RutasView(BaseDjangoView):
+class RutasView(BaseDjangoView, ):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_ruta({'id':id})
@@ -93,7 +95,8 @@ class RutasView(BaseDjangoView):
         d['id'] = id
         r=update_ruta(d)
         return JsonResponse(r)
-    def delete(self, id):
-        d={'id':id}
+    def delete(self, request, id):
+        d = request.POST.dict()
+        d['id'] = id
         r=delete_ruta(d)
         return JsonResponse(r)
