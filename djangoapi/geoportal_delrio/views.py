@@ -15,7 +15,6 @@ from geoportal_delrio.operations.selectDjango import select_barrio, selectall_ba
 from geoportal_delrio.operations.updateDjango import update_barrio, update_cliente, update_ruta
 
 class HelloGeoportal_DelRio(View):
-    actions = {}
     def get(self, request):
         return JsonResponse({"ok":True,"message": "Geoportal_DelRio. Hello world", "data":[request.GET.dict()]})
     def post(self, request):
@@ -23,13 +22,12 @@ class HelloGeoportal_DelRio(View):
 
 ############ BARRIOS
 class BarriosView(BaseDjangoView, ):
-    actions = {}
     #GET OPERATIONS
-    def selectone(self, request, id):
+    def selectone(self, id):
         r=select_barrio({'id':id})
         return JsonResponse(r)
 
-    def selectall(self, request):
+    def selectall(self):
         r=selectall_barrios()
         return JsonResponse(r)
 
@@ -43,21 +41,24 @@ class BarriosView(BaseDjangoView, ):
         d['id'] = id
         r=update_barrio(d)
         return JsonResponse(r)
-    def delete(self, request, id):
-        d = request.POST.dict()
-        d['id'] = id
-        r=delete_barrio(d)
+    # def delete(self, request, id):
+    #     d = request.POST.dict()
+    #     d['id'] = id
+    #     r=delete_barrio(d)
+    #     return JsonResponse(r)
+    def delete(self, id):
+        d = {'id': id}
+        r = delete_barrio(d)
         return JsonResponse(r)
 
 ############ CLIENTES
 class ClientesView(BaseDjangoView, ):
-    actions = {}
     #GET OPERATIONS
-    def selectone(self, request, id):
+    def selectone(self, id):
         r=select_cliente({'id':id})
         return JsonResponse(r)
 
-    def selectall(self, request):
+    def selectall(self):
         r=selectall_clientes()
         return JsonResponse(r)
 
@@ -71,21 +72,24 @@ class ClientesView(BaseDjangoView, ):
         d['id'] = id
         r=update_cliente(d)
         return JsonResponse(r)
-    def delete(self, request, id):
-        d = request.POST.dict()
-        d['id'] = id
-        r=delete_cliente(d)
+    # def delete(self, request, id):
+    #     d = request.POST.dict()
+    #     d['id'] = id
+    #     r=delete_cliente(d)
+    #     return JsonResponse(r)
+    def delete(self, id):
+        d = {'id': id}
+        r = delete_cliente(d)
         return JsonResponse(r)
 
 ############ RUTAS
 class RutasView(BaseDjangoView, ):
-    actions = {}
     #GET OPERATIONS
-    def selectone(self, request, id):
+    def selectone(self, id):
         r=select_ruta({'id':id})
         return JsonResponse(r)
 
-    def selectall(self, request):
+    def selectall(self):
         r=selectall_rutas()
         return JsonResponse(r)
 
@@ -99,8 +103,12 @@ class RutasView(BaseDjangoView, ):
         d['id'] = id
         r=update_ruta(d)
         return JsonResponse(r)
-    def delete(self, request, id):
-        d = request.POST.dict()
-        d['id'] = id
-        r=delete_ruta(d)
+    # def delete(self, request, id):
+    #     d = request.POST.dict()
+    #     d['id'] = id
+    #     r=delete_ruta(d)
+    #     return JsonResponse(r)
+    def delete(self, id):
+        d = {'id': id}
+        r = delete_ruta(d)
         return JsonResponse(r)

@@ -23,45 +23,63 @@ EN EL NAVEGADOR NO SE ESCRIBE GET O POST
 EN REALIDAD EN POST LOS DATOS VAN POR DETRÁS (DESPUÉS DE ///) PERO PARA SABER LO QUE LLEVA
 '''
 urlpatterns = [
-    # --- BARRIOS ---
-    path('barrios/', 
-         views.BarriosView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
-         name='B_GET_selectall()_POST_insert()'), 
+    # --- RUTAS DINÁMICAS (Estilo Profesor) ---
     
-    path('barrios/<int:id>/', 
-         views.BarriosView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
-         name='B_GET_selectone(id)_POST_update(id)'),
-    
-    path('barrios/<int:id>/delete/', 
-         views.BarriosView.as_view(actions={'POST': 'delete'}), 
-         name='B_POST_delete(id)'),
+    # Para operaciones sin ID (ej: selectall, insert)
+    # URL en Postman: .../barrios/selectall/  o  .../barrios/insert/
+    path('barrios/<str:action>/', views.BarriosView.as_view(), name='barrios_views'),
+    path('clientes/<str:action>/', views.ClientesView.as_view(), name='clientes_views'),
+    path('rutas/<str:action>/', views.RutasView.as_view(), name='rutas_views'),
 
-    # --- CLIENTES ---
-    path('clientes/', 
-         views.ClientesView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
-         name='C_GET_selectall()_POST_insert()'),
-    
-    path('clientes/<int:id>/', 
-         views.ClientesView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
-         name='C_GET_selectone(id)_POST_update(id)'),
-    
-    path('clientes/<int:id>/delete/', 
-         views.ClientesView.as_view(actions={'POST': 'delete'}), 
-         name='C_POST_delete(id)'),
-
-    # --- RUTAS ---
-    path('rutas/', 
-         views.RutasView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
-         name='R_GET_selectall()_POST_insert()'),
-    
-    path('rutas/<int:id>/', 
-         views.RutasView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
-         name='R_GET_selectone(id)_POST_update(id)'),
-    
-    path('rutas/<int:id>/delete/', 
-         views.RutasView.as_view(actions={'POST': 'delete'}), 
-         name='R_POST_delete(id)'),
+    # Para operaciones con ID (ej: selectone, update, delete)
+    # URL en Postman: .../barrios/selectone/1/  o  .../barrios/delete/1/
+    path('barrios/<str:action>/<int:id>/', views.BarriosView.as_view(), name='barrios_views_id'),
+    path('clientes/<str:action>/<int:id>/', views.ClientesView.as_view(), name='clientes_views_id'),
+    path('rutas/<str:action>/<int:id>/', views.RutasView.as_view(), name='rutas_views_id'),
 ]
+
+
+
+# urlpatterns = [
+#     # --- BARRIOS ---
+#     path('barrios/', 
+#          views.BarriosView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
+#          name='B_GET_selectall()_POST_insert()'), 
+    
+#     path('barrios/<int:id>/', 
+#          views.BarriosView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
+#          name='B_GET_selectone(id)_POST_update(id)'),
+    
+#     path('barrios/<int:id>/delete/', 
+#          views.BarriosView.as_view(actions={'POST': 'delete'}), 
+#          name='B_POST_delete(id)'),
+
+#     # --- CLIENTES ---
+#     path('clientes/', 
+#          views.ClientesView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
+#          name='C_GET_selectall()_POST_insert()'),
+    
+#     path('clientes/<int:id>/', 
+#          views.ClientesView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
+#          name='C_GET_selectone(id)_POST_update(id)'),
+    
+#     path('clientes/<int:id>/delete/', 
+#          views.ClientesView.as_view(actions={'POST': 'delete'}), 
+#          name='C_POST_delete(id)'),
+
+#     # --- RUTAS ---
+#     path('rutas/', 
+#          views.RutasView.as_view(actions={'GET': 'selectall', 'POST': 'insert'}), 
+#          name='R_GET_selectall()_POST_insert()'),
+    
+#     path('rutas/<int:id>/', 
+#          views.RutasView.as_view(actions={'GET': 'selectone', 'POST': 'update'}), 
+#          name='R_GET_selectone(id)_POST_update(id)'),
+    
+#     path('rutas/<int:id>/delete/', 
+#          views.RutasView.as_view(actions={'POST': 'delete'}), 
+#          name='R_POST_delete(id)'),
+# ]
 
 
 # urlpatterns = [
