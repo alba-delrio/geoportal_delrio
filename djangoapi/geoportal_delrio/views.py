@@ -40,6 +40,12 @@ class BarriosView(BaseDjangoView, ):
         d = request.POST.dict()
         d['id'] = id
         r=update_barrio(d)
+        if r.get('ok') and r.get('data'):
+            for item in r['data']:
+                # Si 'geom' es un objeto de base de datos, lo pasamos a texto (WKT)
+                if 'geom' in item and not isinstance(item['geom'], str):
+                    item['geom'] = item['geom'].wkt
+        
         return JsonResponse(r)
     # def delete(self, request, id):
     #     d = request.POST.dict()
@@ -71,6 +77,12 @@ class ClientesView(BaseDjangoView, ):
         d = request.POST.dict()
         d['id'] = id
         r=update_cliente(d)
+        if r.get('ok') and r.get('data'):
+            for item in r['data']:
+                # Si 'geom' es un objeto de base de datos, lo pasamos a texto (WKT)
+                if 'geom' in item and not isinstance(item['geom'], str):
+                    item['geom'] = item['geom'].wkt
+        
         return JsonResponse(r)
     # def delete(self, request, id):
     #     d = request.POST.dict()
@@ -102,6 +114,12 @@ class RutasView(BaseDjangoView, ):
         d = request.POST.dict()
         d['id'] = id
         r=update_ruta(d)
+        if r.get('ok') and r.get('data'):
+            for item in r['data']:
+                # Si 'geom' es un objeto de base de datos, lo pasamos a texto (WKT)
+                if 'geom' in item and not isinstance(item['geom'], str):
+                    item['geom'] = item['geom'].wkt
+        
         return JsonResponse(r)
     # def delete(self, request, id):
     #     d = request.POST.dict()
