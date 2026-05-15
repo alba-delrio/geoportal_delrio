@@ -23,8 +23,7 @@ EN EL NAVEGADOR NO SE ESCRIBE GET O POST
 EN REALIDAD EN POST LOS DATOS VAN POR DETRÁS (DESPUÉS DE ///) PERO PARA SABER LO QUE LLEVA
 '''
 urlpatterns = [
-    # --- RUTAS DINÁMICAS (Estilo Profesor) ---
-    
+        
     # Para operaciones sin ID (ej: selectall, insert)
     # URL en Postman: .../barrios/selectall/  o  .../barrios/insert/
     path('barrios/<str:action>/', views.BarriosView.as_view(), name='barrios_views'),
