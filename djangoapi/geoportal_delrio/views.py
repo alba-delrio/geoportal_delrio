@@ -137,7 +137,7 @@ class LoginView(View):
 # The request object has the user information
         if request.user.is_authenticated:
             username=request.user.username
-            return JsonResponse({"ok":"true","message": "The user {0} already is authenticated".format(username), "data":[]})
+            return JsonResponse({"ok":True,"message": "The user {0} already is authenticated".format(username), "data":[]})
         username=request.POST.get('username')
         password=request.POST.get('password')
         user = authenticate(username=username, password=password)
@@ -145,12 +145,12 @@ class LoginView(View):
             login(request,user)#introduce into the request cookies the session_id, and in the auth_sessions the session data.This way,in followoing requests, know who is the user and if
     # he is already authenticated.
     # The coockies are sent in the response header on POST requests
-            return JsonResponse({"ok":"true","message": "User {0} logged in".format(username), "data":[{"userame":username}]})
+            return JsonResponse({"ok":True,"message": "User {0} logged in".format(username), "data":[{"userame":username}]})
         else:
     # To make thinks difficult to hackers, you make a random delay,# between 0 and 1 second
             seconds=random.uniform(0, 1)
             time.sleep(seconds)
-            return JsonResponse({"ok":"false","message": "Wrong user or password", "data":[]})
+            return JsonResponse({"ok":False,"message": "Wrong user or password", "data":[]})
         
 
 class LogoutView(LoginRequiredMixin, View):
@@ -158,16 +158,16 @@ class LogoutView(LoginRequiredMixin, View):
         username=request.user.username
         logout(request) #removes from the header of the request
                         #the the session_id, stored in a cookie
-        return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
+        return JsonResponse({"ok":True,"message": "The user {0} is now logged out".format(username), "data":[]})
     
 
 class IsLoggedInView(View):
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             username=request.user.username
-            return JsonResponse({"ok":"true","message": "The user {0} is authenticated".format(username), "data":[{"username":username}]})
+            return JsonResponse({"ok":True,"message": "The user {0} is authenticated".format(username), "data":[{"username":username}]})
         else:
-            return JsonResponse({"ok":"false","message": "User is no authenticated", "data":[]})
+            return JsonResponse({"ok":False,"message": "User is no authenticated", "data":[]})
 
 
 
