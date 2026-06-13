@@ -161,11 +161,15 @@ class LogoutView(LoginRequiredMixin, View):
         return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
     
 
-class LogoutView(LoginRequiredMixin, View):
+class IsLoggedInView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        username=request.user.username
-        logout(request) #removes from the header of the request
-                        #the the session_id, stored in a cookie
-        return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
+        if request.user.is_authenticated:
+            username=request.user.username
+            return JsonResponse({"ok":"true","message": "The user {0} is authenticated".format(username), "data":[{"username":username}]})
+        else:
+            return JsonResponse({"ok":"false","message": "User is no authenticated", "data":[]})
+
+
+
 
 
