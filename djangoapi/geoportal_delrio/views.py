@@ -161,7 +161,7 @@ class LogoutView(LoginRequiredMixin, View):
         return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
     
 
-class IsLoggedInView(LoginRequiredMixin, View):
+class IsLoggedInView(View):
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             username=request.user.username
