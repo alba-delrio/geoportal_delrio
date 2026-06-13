@@ -37,8 +37,8 @@ urlpatterns = [
     path('rutas/<str:action>/<int:id>/', views.RutasView.as_view(), name='rutas_views_id'),
 
     #autentificacion de usuarios
-    path('login/', views.LoginView.as_view(), name='login_views')
-    path('logout/', views.LogoutView.as_view(), name='logout_views')
+    path('login/', views.LoginView.as_view(), name='login_views'),
+    path('logout/', views.LogoutView.as_view(), name='logout_views'),
     path('isloggedin/', views.IsLoggedInView.as_view(), name='isloggedin_views')
 ]
 
