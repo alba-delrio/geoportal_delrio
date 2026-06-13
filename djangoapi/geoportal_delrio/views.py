@@ -7,7 +7,7 @@ from django.views import View
 
 from core.myLib.geometryTools import WkbConversor, GeometryChecks
 from core.myLib.baseDjangoView import BaseDjangoView
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 #my code
 from geoportal_delrio.operations.insertDjango import insert_barrio, insert_cliente, insert_ruta
 from geoportal_delrio.operations.deleteDjango import delete_barrio, delete_cliente, delete_ruta
@@ -130,3 +130,42 @@ class RutasView(BaseDjangoView, ):
         d = {'id': id}
         r = delete_ruta(d)
         return JsonResponse(r)
+    
+######USUARIOS##########
+class LoginView(View):
+    def post(self, request, *args, **kwargs):
+# The request object has the user information
+        if request.user.is_authenticated:
+            username=request.user.username
+            return JsonResponse({"ok":"true","message": "The user {0} already is authenticated".format(username), "data":[]})
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request,user)#introduce into the request cookies the session_id, and in the auth_sessions the session data.This way,in followoing requests, know who is the user and if
+    # he is already authenticated.
+    # The coockies are sent in the response header on POST requests
+            return JsonResponse({"ok":"true","message": "User {0} logged in".format(username), "data":[{"userame":username}]})
+        else:
+    # To make thinks difficult to hackers, you make a random delay,# between 0 and 1 second
+            seconds=random.uniform(0, 1)
+            time.sleep(seconds)
+            return JsonResponse({"ok":"false","message": "Wrong user or password", "data":[]})
+        
+
+class LogoutView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        username=request.user.username
+        logout(request) #removes from the header of the request
+                        #the the session_id, stored in a cookie
+        return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
+    
+
+class LogoutView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        username=request.user.username
+        logout(request) #removes from the header of the request
+                        #the the session_id, stored in a cookie
+        return JsonResponse({"ok":"true","message": "The user {0} is now logged out".format(username), "data":[]})
+
+
