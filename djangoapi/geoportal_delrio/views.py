@@ -21,7 +21,7 @@ class HelloGeoportal_DelRio(View):
         return JsonResponse({"ok":True,"message": "Geoportal_DelRio. Hello world", "data":[request.POST.dict()]})
 
 ############ BARRIOS
-class BarriosView(BaseDjangoView, ):
+class BarriosView(LoginRequiredMixin, BaseDjangoView):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_barrio({'id':id})
@@ -58,7 +58,7 @@ class BarriosView(BaseDjangoView, ):
         return JsonResponse(r)
 
 ############ CLIENTES
-class ClientesView(BaseDjangoView, ):
+class ClientesView(LoginRequiredMixin, BaseDjangoView):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_cliente({'id':id})
@@ -95,7 +95,7 @@ class ClientesView(BaseDjangoView, ):
         return JsonResponse(r)
 
 ############ RUTAS
-class RutasView(BaseDjangoView, ):
+class RutasView(LoginRequiredMixin, BaseDjangoView):
     #GET OPERATIONS
     def selectone(self, id):
         r=select_ruta({'id':id})
