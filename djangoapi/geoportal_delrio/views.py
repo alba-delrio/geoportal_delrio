@@ -8,6 +8,9 @@ from django.views import View
 from core.myLib.geometryTools import WkbConversor, GeometryChecks
 from core.myLib.baseDjangoView import BaseDjangoView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import authenticate, login, logout
+import random
+import time
 #my code
 from geoportal_delrio.operations.insertDjango import insert_barrio, insert_cliente, insert_ruta
 from geoportal_delrio.operations.deleteDjango import delete_barrio, delete_cliente, delete_ruta
