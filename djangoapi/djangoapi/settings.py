@@ -208,7 +208,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 #if you try to use a view without being logged in, redirect to the following URL
-LOGIN_URL = "/geoportal_delrio/not_loggedin/"
+LOGIN_URL = "/api/geoportal_delrio/not_loggedin/"
 #if you try to use a view without being logged in, redirect to the following URL
 # if DEBUG:
 #     LOGIN_URL = "/core/not_loggedin/"
