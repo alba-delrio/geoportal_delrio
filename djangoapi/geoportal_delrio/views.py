@@ -172,6 +172,9 @@ class IsLoggedInView(View):
         else:
             return JsonResponse({"ok":False,"message": "User is no authenticated", "data":[]})
 
+def notLoggedIn(request):
+    return JsonResponse({"ok":"false","message": "You are not logged in", "data":[]})
+
 
 
 

@@ -39,7 +39,8 @@ urlpatterns = [
     #autentificacion de usuarios
     path('login/', views.LoginView.as_view(), name='login_views'),
     path('logout/', views.LogoutView.as_view(), name='logout_views'),
-    path('isloggedin/', views.IsLoggedInView.as_view(), name='isloggedin_views')
+    path('isloggedin/', views.IsLoggedInView.as_view(), name='isloggedin_views'),
+    path('not_loggedin/', views.notLoggedIn, name="not_loggedin")
 ]
 
 
